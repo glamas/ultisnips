@@ -1,0 +1,21 @@
+# 自定义函数
+
+snippet dir_tree "递归显示目录"
+function ${1:tree}(&$arr_file, $directory, $dir_name='')
+{
+    $mydir = dir($directory);
+    if ( !$mydir ) return;
+    while($file = $mydir->read())
+    {
+        if((is_dir("$directory/$file")) AND ($file != ".") AND ($file != ".."))
+        {
+            ${1/\w+\s*/$0/}($arr_file, "$directory/$file", "$dir_name/$file");
+        }
+        else if(($file != ".") AND ($file != ".."))
+        {
+            $arr_file[] = "$dir_name/$file";
+        }
+    }
+    $mydir->close();
+}
+endsnippet

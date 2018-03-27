@@ -1,0 +1,27 @@
+# priority -1
+extends _doc
+
+snippet today
+`!v GetLocalTime("date")`
+endsnippet
+
+snippet now
+`!v GetLocalTime("time")`
+endsnippet
+
+snippet datetime "使用c语言strftime()函数进行格式化"
+`!v GetLocalTime("")`
+endsnippet
+
+snippet test_snippets "测试"
+1.$1
+2.$2
+3.$3
+endsnippet
+
+
+
+snippet now2
+`!p import datetime 
+snip.rv = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') `
+endsnippet
