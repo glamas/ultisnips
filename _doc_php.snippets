@@ -1,0 +1,35 @@
+
+snippet doc-php-simplexml "SimpleXML " b
+http://php.net/manual/zh/simplexml.examples-basic.php
+1 初始化:
+$movies = new SimpleXMLElement($xmlstr);
+or
+$movies = simplexml_load_string($xmlstr);
+如果是文件:
+$movies = simplexml_load_file($xmlfilename);
+
+2 取值:
+$movies->movie[0]->plot;
+如果有横线:
+$movies->movie->{'great-lines'}->line;
+使用xpath筛选:
+$movies->xpath('//character');
+
+3 设值:
+$movies->movie[0]->characters->character[0]->name = 'Miss Coder';
+
+4 创建新节点:
+$character = $movies->movie[0]->characters->addChild('character');
+$character->addChild('name', 'Mr. Parser');
+$character->addChild('actor', 'John Doe');
+设置属性:
+$rating = $movies->movie[0]->addChild('rating', 'PG');
+$rating->addAttribute('type', 'mpaa');
+
+5 其他:
+attributes()		--  返回当前节点的属性数组
+children()			--  返回子节点的数组
+count()				--  返回子节点数量
+getName()			--  当前节点的名称
+asXML(filename_or_none)		--  保存xml到指定文件,如果为空,返回一个xml的字符串
+endsnippet

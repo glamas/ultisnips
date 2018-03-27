@@ -19,3 +19,13 @@ function ${1:tree}(&$arr_file, $directory, $dir_name='')
     $mydir->close();
 }
 endsnippet
+
+snippet xml2array "xml字符串转array"
+function ${1:xml2array}( $xmlstring )
+{
+    $xml = simplexml_load_string($xmlstring);
+    $json = json_encode($xml);
+    $array = json_decode($json,TRUE);
+    return $array;
+}
+endsnippet
