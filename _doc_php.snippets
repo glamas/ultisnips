@@ -27,9 +27,56 @@ $rating = $movies->movie[0]->addChild('rating', 'PG');
 $rating->addAttribute('type', 'mpaa');
 
 5 其他:
-attributes()		--  返回当前节点的属性数组
-children()			--  返回子节点的数组
-count()				--  返回子节点数量
-getName()			--  当前节点的名称
-asXML(filename_or_none)		--  保存xml到指定文件,如果为空,返回一个xml的字符串
+attributes()        --  返回当前节点的属性数组
+children()          --  返回子节点的数组
+count()             --  返回子节点数量
+getName()           --  当前节点的名称
+asXML(filename_or_none)     --  保存xml到指定文件,如果为空,返回一个xml的字符串
+endsnippet
+
+snippet doc-php-autoload "php 自动加载类文件" b
+http://php.net/manual/zh/function.spl-autoload-register.php
+1 __autoload函数是一个魔术函数
+    该函数的作用是尝试加载未定义的类
+    当使用new关键词实例化一个对象的时候,如果该类没有在当前文件中定义,就会触发__autoload函数
+    如果在当前文件找到该类的定义,就不触发
+    function __autoload($classname){
+        $classpath = "{$classname}.php";
+        if(file_exists($classpath)){
+            require_once($classpath);
+        }else{
+            echo $classpath." not be found!";
+        }
+    }
+2 spl_autoload_register函数
+    该函数的作用就是将自定义函数设置替换为__autoload函数
+    如果该函数和__autoload同时出现,以该函数为准
+    该函数可以多次调用
+    function myLoad($classname){
+        $classpath = "{$classname}.php";
+        if(file_exists($classpath)){
+            require_once($classpath);
+        }else{
+            echo $classpath." not be found!";
+        }
+    }
+    spl_autoload_register("myLoad");
+3 其他内容
+spl_autoload_unregister()       --  注销已注册的__autoload函数
+spl_autoload_functions()        --  获取所有已注册的函数
+spl_autoload_call()             --  尝试调用所有已注册的__autoload()函数来装载请求类
+endsnippet
+
+
+snippet doc-php-two_colon "php 双冒号和箭头" b
+1 当调用静态属性和静态方法时:
+    test::$static_var;          --  不需要实例化
+    test::static_func();        --  不需要实例化
+    (new class)test->static_var;
+    (new class)test->static_func();
+2 当调用自身类或者父类的属性或者方法时:
+    parent::parent_func();
+    self::children_func();
+    $this->children_func();
+3 ->是访问对象的方法和属性(要实例化)，::是访问类的静态方法和静态变量
 endsnippet

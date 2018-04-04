@@ -21,11 +21,18 @@ function ${1:tree}(&$arr_file, $directory, $dir_name='')
 endsnippet
 
 snippet xml2array "xml字符串转array"
-function ${1:xml2array}( $xmlstring )
+function ${1:xml2array}($xmlstring)
 {
     $xml = simplexml_load_string($xmlstring);
     $json = json_encode($xml);
     $array = json_decode($json,TRUE);
     return $array;
+}
+endsnippet
+
+snippet __autoload "自动加载类文件"
+function __autoload($classname) {
+    $filename = "./". $classname .".php";
+    include_once($filename);
 }
 endsnippet
