@@ -1,0 +1,11 @@
+
+snippet doc-shell-returncode "shell的返回值" b
+1.管道
+$PIPESTATUS
+PIPESTATUS 是一个数组,依次存储管道命令的返回值,例如,第一条命令的返回值${PIPESTATUS[0]}
+如果只有一条命令,返回值存储在${PIPESTATUS[0]},此时和$?相同
+如果有多条命令,PIPESTATUS的最后一个值总是和$?相同
+2.
+函数内使用return n作为返回值
+脚本内使用exit n
+endsnippet
