@@ -9,3 +9,10 @@ PIPESTATUS 是一个数组,依次存储管道命令的返回值,例如,第一条
 函数内使用return n作为返回值
 脚本内使用exit n
 endsnippet
+
+snippet doc-shell-param_shift "位置参数左移命令shift" b
+用法:
+shift [n]		# n默认为1,将参数$m 变成$(m-n),相当于舍弃开始n个参数
+例如:
+shift 3		# 此时$5 变成$2,同时参数数量$#减少3
+endsnippet
