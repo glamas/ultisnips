@@ -80,3 +80,12 @@ snippet doc-php-two_colon "php 双冒号和箭头" b
     $this->children_func();
 3 ->是访问对象的方法和属性(要实例化)，::是访问类的静态方法和静态变量
 endsnippet
+
+snippet doc-php-is_ajax "判断请求是否ajax" b
+if(!function_exists('is_ajax')){
+    function is_ajax()
+    {
+        return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtoupper($_SERVER['HTTP_X_REQUESTED_WITH'])=='XMLHTTPREQUEST';
+    }
+}
+endsnippet
