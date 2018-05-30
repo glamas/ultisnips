@@ -25,3 +25,21 @@ today = datetime.date.today()
 today_zero_time = datetime.datetime.strftime(today, '%Y-%m-%d %H:%M:%S')
 
 endsnippet
+
+snippet doc-python-subprocess-log "子线程日志处理" b
+import subprocess
+f = open('./log.log', 'w+')
+commamd = ['/usr/bin/python','path/to/py/scripty']
+process = subprocess.Popen(commamd, shell=False, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+while process.poll() is None:
+  line = process.stdout.readline()
+  line = line.strip()
+  line = line.decode('utf8')
+  if line:
+    f.write(datetime.datetime.now().strftime('%Y-%m-%d_%H:%M:%S') + " : " + str(line) + "\n")
+    print(str(line))
+f.write(datetime.datetime.now().strftime('%Y-%m-%d_%H:%M:%S') + " : " + "="*60 + "\n")
+f.write(datetime.datetime.now().strftime('%Y-%m-%d_%H:%M:%S') + " : RETURNCODE = " + str(process.returncode) + "\n")
+f.write(datetime.datetime.now().strftime('%Y-%m-%d_%H:%M:%S') + " : " + "="*60 + "\n")
+f.close()
+endsnippet
